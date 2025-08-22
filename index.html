@@ -4,43 +4,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
+    <title>User Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .user-icon {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-right: auto;
+            margin-left: 1rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            margin-left: 2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Image Sections */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-card p {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: white;
+            padding: 4rem 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        input, textarea {
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .user-icon {
+                margin: 0;
+            }
+
+            nav a {
+                margin: 0.5rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .contact-section {
+                margin: 1rem;
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 1.5rem;
+            }
+
+            .image-card p {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+
+            button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav>
-    <h1>user</h1>
-    <i class="fa-solid fa-user"></i>
+    <h1>user portfolio</h1>
+    <i class="fa-solid fa-user user-icon"></i>
     <a href="about.html">about</a>
     <a href="service.html">service</a>
 </nav>    
-<div>
-    <div>
-    <img src="https://picsum.photos/200/300" alt="">
+<div class="image-grid">
+    <div class="image-card">
+    <img src="https://picsum.photos/400/300?random=1" alt="Project 1">
     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam, vitae?</p>
     </div>
-    <div>
-    <img src="https://picsum.photos/200/300" alt="">
+    <div class="image-card">
+    <img src="https://picsum.photos/400/300?random=2" alt="Project 2">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, fuga.</p>
     </div>
-    <div>
-    <img src="https://picsum.photos/200/300" alt="">
+    <div class="image-card">
+    <img src="https://picsum.photos/400/300?random=3" alt="Project 3">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, incidunt!</p>
     </div>
 </div>
-<div>
-
+<div class="contact-section">
     <form action="">
-    <label for="">name</label><br>
-    <input type="text" placeholder="type you name"><br>
-    <label for="">email</label><br>
-    <input type="text" placeholder="type you email"><br>
-    <label for="">message</label><br>
-    <textarea name="" id="" cols="20" rows="5" placeholder="type you message"></textarea>
-    <button type="submit">send</button>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Type your name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Type your email" required>
+    
+    <label for="message">Message</label>
+    <textarea id="message" placeholder="Type your message" required></textarea>
+    
+    <button type="submit">Send Message</button>
     </form>
 </div>
-<div>
-    <p>all rights reserved &copy; 2035</p>
-</div>
+<footer>
+    <p>All rights reserved &copy; 2035</p>
+</footer>
 </body>
 </html>
